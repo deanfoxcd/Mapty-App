@@ -229,3 +229,14 @@ a:visited {
   display: grid;
   align-self: center;
 }
+
+.btn__delete,
+.btn__edit {
+  background-color: #00c46a;
+  font-family: inherit;
+  border-radius: 5px;
+  width: 50px;
+  /* display: inline-block; */
+  text-align: center;
+  margin-top: 5px;
+}

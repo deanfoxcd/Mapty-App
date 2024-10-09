@@ -63,6 +63,7 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 const resetBtn = document.querySelector('.btn__delete--all');
+
 class App {
   #map;
   #mapEvent;
@@ -78,7 +79,7 @@ class App {
     // Event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField); // No bind because the this keyword isn't used in this function
-    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    // containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
     resetBtn.addEventListener('click', this.reset);
   }
 
@@ -215,10 +216,10 @@ class App {
   }
 
   _renderWorkout(workout) {
-    let html = `<li class="workout workout--${workout.type}" data-id="${
-      workout.id
-    }">
-          <h2 class="workout__title">${workout.description}</h2>
+    let html = `
+        <li class="workout workout--${workout.type}" data-id="${workout.id}">
+          <h2 class="workout__title">${workout.description} 
+          </h2>
           <div class="workout__details">
             <span class="workout__icon">${
               workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'
@@ -233,7 +234,8 @@ class App {
           </div>`;
 
     if (workout.type === 'running')
-      html += `<div class="workout__details">
+      html += `
+          <div class="workout__details">
             <span class="workout__icon">⚡️</span>
             <span class="workout__value">${workout.pace.toFixed(1)}</span>
             <span class="workout__unit">min/km</span>
@@ -243,9 +245,12 @@ class App {
             <span class="workout__value">${workout.cadence}</span>
             <span class="workout__unit">spm</span>
           </div>
+          <button class="btn__delete"> Delete </button>
+          <button class="btn__edit"> Edit </button>
         </li>`;
     if (workout.type === 'cycling')
-      html += `<div class="workout__details">
+      html += `
+          <div class="workout__details">
             <span class="workout__icon">⚡️</span>
             <span class="workout__value">${workout.speed.toFixed(1)}</span>
             <span class="workout__unit">km/h</span>
@@ -255,9 +260,19 @@ class App {
             <span class="workout__value">${workout.elevationGain}</span>
             <span class="workout__unit">m</span>
           </div>
+          <button class="btn__delete"> Delete </button>
+          <button class="btn__edit"> Edit </button>
         </li>`;
 
     form.insertAdjacentHTML('afterend', html);
+
+    const deleteBtn = document.querySelector('.btn__delete');
+    deleteBtn.addEventListener('click', this._deleteWorkout.bind(this));
+
+    const editBtn = document.querySelector('.btn__edit');
+    editBtn.addEventListener('click', () => console.log('Edit'));
+
+    // console.log(this.#workouts);
   }
 
   _moveToPopup(e) {
@@ -269,7 +284,7 @@ class App {
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
+    // console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel);
   }
@@ -291,6 +306,33 @@ class App {
 
   reset() {
     localStorage.removeItem('workouts');
+    location.reload();
+  }
+
+  _editWorkout() {
+    const workoutEl = e.target.closest('.workout');
+    // console.log(workoutEl);
+
+    if (!workoutEl) return;
+
+    const workoutId = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+  }
+
+  _deleteWorkout(e) {
+    const workoutEl = e.target.closest('.workout');
+    // console.log(workoutEl);
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+    this.#workouts = this.#workouts.filter(work => work.id !== workout.id);
+    console.log(this.#workouts);
+
+    this._setLocalStorage();
     location.reload();
   }
 }
