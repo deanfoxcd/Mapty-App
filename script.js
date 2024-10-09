@@ -62,6 +62,7 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const resetBtn = document.querySelector('.btn__delete--all');
 class App {
   #map;
   #mapEvent;
@@ -78,6 +79,7 @@ class App {
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField); // No bind because the this keyword isn't used in this function
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    resetBtn.addEventListener('click', this.reset);
   }
 
   _getPosition() {

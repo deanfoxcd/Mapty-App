@@ -218,3 +218,14 @@ a:visited {
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
 }
+
+.btn__delete--all {
+  background-color: #00c46a;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+  display: grid;
+  align-self: center;
+}
