@@ -278,13 +278,18 @@ class App {
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
-    console.log(data);
+    // console.log(data);
 
     if (!data) return;
 
     this.#workouts = data;
 
     this.#workouts.forEach(work => this._renderWorkout(work));
+  }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
   }
 }
 
