@@ -8,7 +8,7 @@ Mapty is a modern, interactive web application that lets you log, visualize, and
 
 ## 🚀 Live Demo
 
-👉 _Add your deployed link here!_
+👉 [Try for yourself](https://mapty-khaki.vercel.app/)
 
 ---
 
@@ -48,7 +48,7 @@ To run this project locally:
 
 ---
 
-## ⚠️ Known Issues
+## ⚠️ Known Issues/Things to Know
 
 - App requires browser location access to function.
 - Some map tiles may not load if offline or if OpenStreetMap is unavailable.
