@@ -31,15 +31,12 @@ Mapty is a modern, interactive web application that lets you log, visualize, and
 
 To run this project locally:
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/deanfoxcd/Mapty-App/
-   cd mapty
-   ```
-2. **Install the Live-Server extension in your IDE**
-   - Extension ID: ritwickdey.LiveServer
-3. **Open the app**
-   - Right click on the index.html file and select "Open with Live Server"
+1. **Download the code**
+   - Near the top of the page, click the blue "Code" button and select "Download ZIP"
+2. **Open the folder**
+   - Locate the zip file and unzip it. Open index.html in your browser
+3. **Add a workout**
+   - Click anywhere on the map to add a workout
 
 ---
 
