@@ -1,1 +1,1 @@
-# Modern-JS-Mapty-App
+# An App to Track Workouts on a Map
