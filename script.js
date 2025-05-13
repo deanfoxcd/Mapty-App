@@ -81,12 +81,13 @@ class App {
   }
 
   _getPosition() {
-    navigator.geolocation.getCurrentPosition(
-      this._loadMap.bind(this),
-      function () {
-        alert('Cannot get your location');
-      }
-    );
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(
+        this._loadMap.bind(this),
+        function () {
+          alert('Cannot get your location');
+        }
+      );
   }
 
   _loadMap(position) {
@@ -97,7 +98,7 @@ class App {
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
-    L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
